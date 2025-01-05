@@ -25,8 +25,22 @@ The work includes the following components:
 The dependencies are listed in `requirements.txt`. Follow the steps below to set up a virtual environment and install the required packages:
 
 1. **Create a virtual environment:**
-   ```bash
-   python3 -m venv myenv
-   source myenv/bin/activate
-   pip install -r requirements.txt
+	```bash
+	python3 -m venv myenv
+	source myenv/bin/activate
+	pip install -r requirements.txt
 
+## Data preparation
+
+The data used for model training is a subset of the NYUv2 dataset. It is obtained from the GitHub repository "FastDepth": https://github.com/dwofk/fast-depth/tree/master. 
+As described by FastDepth, data can be downloaded by the following command (32GB):
+
+	```bash
+	mkdir data; cd data
+	wget http://datasets.lids.mit.edu/fastdepth/data/nyudepthv2.tar.gz
+	tar -xvf nyudepthv2.tar.gz && rm -f nyudepthv2.tar.gz
+	cd ..
+
+## Model Training
+
+   
