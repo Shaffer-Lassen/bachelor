@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--loss', type=str, default='l1')
     parser.add_argument('--cuda', type=int, default=0)
     parser.add_argument('--workers', type=int, default=8)
+    parser.add_argument('--wandb', action='store_true', help="Enable WandB logging (default: False)")
     args = parser.parse_args()
     
     checkpoint_dir = args.checkpoint_dir
@@ -31,14 +32,17 @@ def main():
 
     set_seed(1)
     
-    wandb.init(project="depth-estimation", config={
-        "model": args.model,
-        "Loss": args.loss,
-        "epochs": args.epochs,
-        "batch_size": args.batch_size,
-        "learning_rate": args.lr,
-        "data": args.dataset
-    })
+    if args.wandb:
+        wandb.init(project="depth-estimation", config={
+            "model": args.model,
+            "Loss": args.loss,
+            "epochs": args.epochs,
+            "batch_size": args.batch_size,
+            "learning_rate": args.lr,
+            "data": args.dataset
+        })
+    else:
+    print("WandB logging is disabled.")
 
     transform_pair = PairedTransform()
     transform_image = PrepareImageTransform()
@@ -162,7 +166,8 @@ def main():
         print(f"  Delta < 1.25^2: {average_delta_2:.4f}")
         print(f"  Delta < 1.25^3: {average_delta_3:.4f}")
 
-        wandb.log({
+        if args.wandb:
+            wandb.log({
             "train_loss": average_train_loss,
             "val_loss": average_val_loss,
             "RMSE": average_rmse,
@@ -172,7 +177,7 @@ def main():
             "Delta < 1.25^2": average_delta_2,
             "Delta < 1.25^3": average_delta_3,
             "epoch": epoch + 1
-        })
+            })
 
         if (epoch + 1) % 10 == 0 or epoch == args.epochs - 1:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
