@@ -88,7 +88,7 @@ class COCO(Dataset):
 
 def load_nyu_train(transform_image=None, transform_depth=None, transform_pair=None):
     train_data =   NYUDepth(
-                    csv_path='./data/nyudepthv2/train_files.csv',
+                    csv_path='./data/train_files.csv',
                     transform_image=transform_image,
                     transform_depth=transform_depth,
                     transform_pair=transform_pair
@@ -101,7 +101,7 @@ def load_nyu_train(transform_image=None, transform_depth=None, transform_pair=No
 
 def load_nyu_test(transform_image=None, transform_depth=None, transform_pair=None):
     return  NYUDepth(
-            csv_path='./data/nyudepthv2/test_files.csv',
+            csv_path='./data/test_files.csv',
             transform_image=transform_image,
             transform_depth=transform_depth,
             transform_pair=transform_pair
@@ -109,7 +109,7 @@ def load_nyu_test(transform_image=None, transform_depth=None, transform_pair=Non
     
 def load_coco_train(transform_image=None, transform_depth=None, transform_pair=None):
     train_data =    COCO(
-                        csv_path='./data/COCO/COCO.csv',
+                        csv_path='./data/COCO.csv',
                         transform_image=transform_image,
                         transform_depth=transform_depth,
                         transform_pair=transform_pair
