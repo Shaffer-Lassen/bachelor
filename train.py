@@ -19,7 +19,7 @@ def main():
     parser.add_argument('--lr', type=float, default=0.0001)
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--checkpoint_dir', type=str, default='./checkpoints')
-    parser.add_argument('--model', type=str, default='scratch')
+    parser.add_argument('--model', type=str, default='dino')
     parser.add_argument('--pretrained', type=bool, default=False)
     parser.add_argument('--loss', type=str, default='l1')
     parser.add_argument('--cuda', type=int, default=0)
