@@ -42,7 +42,7 @@ def main():
             "data": args.dataset
         })
     else:
-    print("WandB logging is disabled.")
+        print("WandB logging is disabled.")
 
     transform_pair = PairedTransform()
     transform_image = PrepareImageTransform()
